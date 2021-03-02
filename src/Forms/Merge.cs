@@ -14,8 +14,8 @@ namespace FileSplitTool
     public partial class Merge : Form
     {
         readonly OpenFileDialog openFile = new OpenFileDialog();
-        readonly List<Input01> inputs01 = new List<Input01>();
-        readonly List<Input02> inputs02 = new List<Input02>();
+        List<Input01> inputs01 = new List<Input01>();
+        List<Input02> inputs02 = new List<Input02>();
 
         public Merge()
         {
@@ -24,33 +24,65 @@ namespace FileSplitTool
 
         private void btnMerge_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveFile = new SaveFileDialog
+            var errorLines = new List<string>();
+            SaveFileDialog saveSuccessFile = new SaveFileDialog
             {
-                FileName = "merge.txt",
+                FileName = "success.txt",
                 Filter = "Text Files (.txt)| *.txt"
             };
-            if (saveFile.ShowDialog() == DialogResult.OK)
+            if (saveSuccessFile.ShowDialog() == DialogResult.OK)
             {
-                var path = saveFile.FileName;
+                var path = saveSuccessFile.FileName;
                 var minLine = Math.Min(inputs01.Count, inputs02.Count);
                 TextWriter txt = new StreamWriter(path);
+                
                 for (var i = 0; i < minLine; i++)
                 {
                     var mergeline = MergeLineHelper.MergeLine(inputs01[i], inputs02[i]);
                     var resultType = InputValidation.Validate(inputs01[i], inputs02[i]);
-                    txt.Write($"{mergeline}|{resultType.GetHashCode().ConvertErrorCode()}{Environment.NewLine}");
+                    if(resultType == ResultType.Success)
+                    {
+                        var successLine = $"{mergeline}{Environment.NewLine}";
+                        txt.Write(successLine);
+                    }
+                    else
+                    {
+                        var errorLine = $"{mergeline}|{resultType.GetHashCode().ConvertErrorCode()}{Environment.NewLine}";
+                        errorLines.Add(errorLine);
+                    }
                 }
                 txt.Close();
-                MessageBoxHelper.Info(Resources.MSG_MERGE_FILE_SUCCESS);
+                
             }
-        }
 
+            if (errorLines.Any())
+            {
+                SaveFileDialog saveErrorFile = new SaveFileDialog
+                {
+                    FileName = "error.txt",
+                    Filter = "Text Files (.txt)| *.txt"
+                };
+                if (saveErrorFile.ShowDialog() == DialogResult.OK)
+                {
+                    var path = saveErrorFile.FileName;
+                    TextWriter errorTxt = new StreamWriter(path);
+                    foreach(var line in errorLines)
+                    {
+                        errorTxt.Write(line);
+                    }
+                    errorTxt.Close();
+                }
+            }
+            MessageBoxHelper.Info(Resources.MSG_MERGE_FILE_SUCCESS);
+        }
+        
         private void btnOpenFile1_Click(object sender, EventArgs e)
         {
             string line = "";
             if (openFile.ShowDialog() == DialogResult.OK)
             {
                 lbResult.Items.Clear();
+                inputs01 = new List<Input01>();
                 txtFile1.Text = openFile.FileName;
                 StreamReader sr = new StreamReader(openFile.FileName);
                 try
@@ -60,7 +92,7 @@ namespace FileSplitTool
                         line = sr.ReadLine();
                         if (line != null)
                         {
-                            var input = new Input01();
+                            var input = new Input01(line.Length);
                             input.SetValue(line);
                             inputs01.Add(input);
                             var errorCode = Input01Validation.Validation(input);
@@ -83,6 +115,7 @@ namespace FileSplitTool
             if (openFile.ShowDialog() == DialogResult.OK)
             {
                 lbResult2.Items.Clear();
+                inputs02 = new List<Input02>();
                 txtFile2.Text = openFile.FileName;
                 StreamReader sr = new StreamReader(openFile.FileName);
                 try
@@ -92,7 +125,7 @@ namespace FileSplitTool
                         line = sr.ReadLine();
                         if (line != null)
                         {
-                            var input = new Input02();
+                            var input = new Input02(line.Length);
                             input.SetValue(line);
                             inputs02.Add(input);
                             var errorCode = Input02Validation.Validation(input);

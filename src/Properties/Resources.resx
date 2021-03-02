@@ -183,6 +183,9 @@
   <data name="MSG_PRODUCTION_CODE_INVALID" xml:space="preserve">
     <value>Incorrect Production Code format</value>
   </data>
+  <data name="MSG_RECORDNUMBER_NOT_MAPPING" xml:space="preserve">
+    <value>Record Number does not match</value>
+  </data>
   <data name="MSG_RECORD_NUMBER_INVALID" xml:space="preserve">
     <value>Incorrect Record Number format</value>
   </data>

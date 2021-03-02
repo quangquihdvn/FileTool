@@ -46,6 +46,8 @@ namespace FileSplitTool.Commons
         [Localization(nameof(Resources.MSG_SERVICE_CODE_INVALID), typeof(Resources))]
         ServiceCodeInvalid = 19,
         [Localization(nameof(Resources.MSG_CARD_NUMBER_02_INVALID), typeof(Resources))]
-        CardNumber02Invalid = 20
+        CardNumber02Invalid = 20,
+        [Localization(nameof(Resources.MSG_RECORDNUMBER_NOT_MAPPING), typeof(Resources))]
+        RecordNumberNotMapping = 21
     }
 }

@@ -101,9 +101,11 @@ namespace FileSplitTool.Validation
 
         private static bool PANValidate(string value)
         {
-            bool isLength = value.Length == Constants.PAN_LENGTH;
+            bool isLength = value.Length == Constants.PAN_01_LENGTH;
             var panValue = value.Substring(0, 16);
-            return isLength && panValue.IsValidLongNumber();
+            var space = value.Substring(16, value.Length - 16).ToCharArray();
+            var checkSpace = space.All(x => x == ' ');
+            return isLength && panValue.IsValidLongNumber() && checkSpace;
         }
 
         private static bool PanSequenceNumberValidate(string value)

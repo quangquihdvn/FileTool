@@ -17,6 +17,12 @@ namespace FileSplitTool.Validation
             {
                 return input2Validate;
             }
+
+            if(input01.RecordNumber.Value != input02.RecordNumber.Value /*|| input01.PAN.Value != input02.PAN.Value*/)
+            {
+                return ResultType.RecordNumberNotMapping;
+            }
+
             return ResultType.Success;
         }
     }

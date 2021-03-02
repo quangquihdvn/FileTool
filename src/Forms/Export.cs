@@ -14,7 +14,7 @@ namespace FileSplitTool
     public partial class Export : Form
     {
         readonly OpenFileDialog openFile = new OpenFileDialog();
-        readonly List<ResultType> errors = new List<ResultType>();
+        //readonly List<ResultType> errors = new List<ResultType>();
 
         public Export()
         {
@@ -36,7 +36,7 @@ namespace FileSplitTool
                         line = sr.ReadLine();
                         if (line != null)
                         {
-                            var input = new Input01();
+                            var input = new Input01(line.Length);
                             input.SetValue(line);
                             var errorCode = Input01Validation.Validation(input);
                             if (errorCode == ResultType.Success)
@@ -46,7 +46,7 @@ namespace FileSplitTool
                             else
                             {
                                 lbResult.Items.Add(errorCode.GetDescription());
-                                errors.Add(errorCode);
+                                //errors.Add(errorCode);
                             }
                         }
                     }
@@ -66,12 +66,6 @@ namespace FileSplitTool
 
         private void btnExport_Click(object sender, EventArgs e)
         {
-            if (errors.Any())
-            {
-                MessageBoxHelper.Error(errors.First().GetDescription());
-                return;
-            }
-
             SaveFileDialog saveFile = new SaveFileDialog
             {
                 FileName = "output.txt",

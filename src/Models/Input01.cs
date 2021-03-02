@@ -4,12 +4,12 @@ namespace FileSplitTool.Models
 {
     public class Input01
     {
-        public Input01()
+        public Input01(int maxLength)
         {
             RecordNumber = new Card { Length = Constants.RECORD_NUMBER_LENGTH, StartIndex = 0 };
             CardNumber = new Card { Length = Constants.CARD_NUMBER_01_LENGTH, StartIndex = RecordNumber.NextStartIndex };
             ProductionCode = new Card { Length = Constants.PRODUCTION_CODE_LENGTH, StartIndex = CardNumber.NextStartIndex };
-            PAN = new Card { Length = Constants.PAN_LENGTH, StartIndex = ProductionCode.NextStartIndex };
+            PAN = new Card { Length = Constants.PAN_01_LENGTH, StartIndex = ProductionCode.NextStartIndex };
             PanSequenceNumber = new Card { Length = Constants.PAN_SEQUENCE_NUMBER_LENGTH, StartIndex = PAN.NextStartIndex };
             EffectiveDate = new Card { Length = Constants.EFFECTIVE_DATE_LENGTH, StartIndex = PanSequenceNumber.NextStartIndex };
             ExpiryDate = new Card { Length = Constants.EXPIRY_DATE_LENGTH, StartIndex = EffectiveDate.NextStartIndex };
@@ -21,7 +21,23 @@ namespace FileSplitTool.Models
             MagTrack2 = new Card { Length = Constants.MAGTRACK2_LENGTH, StartIndex = MagTrack1.NextStartIndex };
             ICVV = new Card { Length = Constants.ICVV_LENGTH, StartIndex = MagTrack2.NextStartIndex };
             CardID = new Card { Length = Constants.CARDID_LENGTH, StartIndex = ICVV.NextStartIndex };
-            Barcode = new Card { Length = Constants.BARCODE_LENGTH, StartIndex = CardID.NextStartIndex };
+            var barCodeLength = maxLength
+                - RecordNumber.Length
+                - CardNumber.Length
+                - ProductionCode.Length
+                - PAN.Length
+                - PanSequenceNumber.Length
+                - EffectiveDate.Length
+                - ExpiryDate.Length
+                - CardHoderName.Length
+                - CompanyName.Length
+                - CardNumberBackSide.Length
+                - CVV2.Length
+                - MagTrack1.Length
+                - MagTrack2.Length
+                - ICVV.Length
+                - CardID.Length;
+            Barcode = new Card { Length = barCodeLength, StartIndex = CardID.NextStartIndex };
         }
 
         public Card RecordNumber { get; set; } 

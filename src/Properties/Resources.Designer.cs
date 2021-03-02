@@ -268,6 +268,15 @@ namespace FileSplitTool.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Record Number does not match.
+        /// </summary>
+        internal static string MSG_RECORDNUMBER_NOT_MAPPING {
+            get {
+                return ResourceManager.GetString("MSG_RECORDNUMBER_NOT_MAPPING", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Incorrect ServiceCode format.
         /// </summary>
         internal static string MSG_SERVICE_CODE_INVALID {
