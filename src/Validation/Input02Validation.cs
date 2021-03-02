@@ -54,11 +54,11 @@ namespace FileSplitTool.Validation
 
         private static bool RecordNumberValidate(string value)
         {
-            return value.Length == Constants.RECORD_NUMBER_LENGTH && value.IsValidNumber();
+            return value.Length == Constants.Input02Length.RECORD_NUMBER_LENGTH && value.IsValidNumber();
         }
         private static bool PANValidate(string value)
         {
-            bool isLength = value.Length == Constants.PAN_02_LENGTH;
+            bool isLength = value.Length == Constants.Input02Length.PAN_02_LENGTH;
             var panValue = value.Substring(0, 16);
             //var space = value.Substring(16, value.Length - 16).ToCharArray();
             //var checkSpace = space.All(x => x == ' ');
@@ -80,18 +80,18 @@ namespace FileSplitTool.Validation
 
         private static bool CanValidate(string value)
         {
-            return value.Length == Constants.CAN_LENGTH && value.IsValidLongNumber();
+            return value.Length == Constants.Input02Length.CAN_LENGTH && value.IsValidLongNumber();
         }
 
         private static bool ServiceCodeValidate(string value)
         {
-            var regexItem = new Regex(RegexConst.REGEX1);
-            return value.Length == Constants.SERVICE_CODE_LENGTH && regexItem.IsMatch(value);
+            var regexItem = new Regex(Constants.RegexConst.REGEX1);
+            return value.Length == Constants.Input02Length.SERVICE_CODE_LENGTH && regexItem.IsMatch(value);
         }
 
         private static bool CardNumberValidate(string value)
         {
-            return value.Length == Constants.CARD_NUMBER_02_LENGTH && value.IsValidLongNumber();
+            return value.Length == Constants.Input02Length.CARD_NUMBER_02_LENGTH && value.IsValidLongNumber();
         }
     }
 }

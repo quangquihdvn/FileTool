@@ -21,5 +21,11 @@ namespace FileSplitTool
             Merge merge = new Merge();
             merge.Show();
         }
+
+        private void btnConvert_Click(object sender, EventArgs e)
+        {
+            Forms.Convert convert = new Forms.Convert();
+            convert.Show();
+        }
     }
 }

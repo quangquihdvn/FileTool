@@ -54,6 +54,12 @@
     <Compile Include="Extensions\EnumExtension.cs" />
     <Compile Include="Extensions\IntegerExtension.cs" />
     <Compile Include="Extensions\StringExtension.cs" />
+    <Compile Include="Forms\Convert.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Convert.Designer.cs">
+      <DependentUpon>Convert.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Export.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,6 +79,7 @@
       <DependentUpon>Merge.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Card.cs" />
+    <Compile Include="Models\ConvertFile.cs" />
     <Compile Include="Models\Input01.cs" />
     <Compile Include="Models\Input02.cs" />
     <Compile Include="Program.cs" />
@@ -80,6 +87,9 @@
     <Compile Include="Validation\Input01Validation.cs" />
     <Compile Include="Validation\Input02Validation.cs" />
     <Compile Include="Validation\InputValidation.cs" />
+    <EmbeddedResource Include="Forms\Convert.resx">
+      <DependentUpon>Convert.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Export.resx">
       <DependentUpon>Export.cs</DependentUpon>
     </EmbeddedResource>

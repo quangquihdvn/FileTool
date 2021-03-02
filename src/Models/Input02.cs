@@ -6,20 +6,20 @@ namespace FileSplitTool.Models
     {
         public Input02(int maxLength)
         {
-            RecordNumber = new Card { Length = Constants.RECORD_NUMBER_LENGTH, StartIndex = 0 };
-            Fix = new Card { Length = Constants.FIX_LENGTH, StartIndex = RecordNumber.NextStartIndex };
-            PAN = new Card { Length = Constants.PAN_02_LENGTH, StartIndex = Fix.NextStartIndex };
-            Fix1 = new Card { Length = Constants.FIX_LENGTH, StartIndex = PAN.NextStartIndex };
-            Can = new Card { Length = Constants.CAN_LENGTH, StartIndex = Fix1.NextStartIndex };
-            Fix2 = new Card { Length = Constants.FIX_LENGTH, StartIndex = Can.NextStartIndex };
-            ServiceCode = new Card { Length = Constants.SERVICE_CODE_LENGTH, StartIndex = Fix2.NextStartIndex };
-            Fix3 = new Card { Length = Constants.FIX_LENGTH, StartIndex = ServiceCode.NextStartIndex };
+            RecordNumber = new Card { Length = Constants.Input02Length.RECORD_NUMBER_LENGTH, StartIndex = 0 };
+            Fix = new Card { Length = Constants.Input02Length.FIX_LENGTH, StartIndex = RecordNumber.NextStartIndex };
+            PAN = new Card { Length = Constants.Input02Length.PAN_02_LENGTH, StartIndex = Fix.NextStartIndex };
+            Fix1 = new Card { Length = Constants.Input02Length.FIX_LENGTH, StartIndex = PAN.NextStartIndex };
+            Can = new Card { Length = Constants.Input02Length.CAN_LENGTH, StartIndex = Fix1.NextStartIndex };
+            Fix2 = new Card { Length = Constants.Input02Length.FIX_LENGTH, StartIndex = Can.NextStartIndex };
+            ServiceCode = new Card { Length = Constants.Input02Length.SERVICE_CODE_LENGTH, StartIndex = Fix2.NextStartIndex };
+            Fix3 = new Card { Length = Constants.Input02Length.FIX_LENGTH, StartIndex = ServiceCode.NextStartIndex };
             var cardNumberLength = maxLength 
-                - Constants.RECORD_NUMBER_LENGTH 
-                - Constants.PAN_02_LENGTH
-                - Constants.FIX_LENGTH * 4
-                - Constants.CAN_LENGTH 
-                - Constants.SERVICE_CODE_LENGTH;
+                - Constants.Input02Length.RECORD_NUMBER_LENGTH 
+                - Constants.Input02Length.PAN_02_LENGTH
+                - Constants.Input02Length.FIX_LENGTH * 4
+                - Constants.Input02Length.CAN_LENGTH 
+                - Constants.Input02Length.SERVICE_CODE_LENGTH;
             CardNumber = new Card { Length = cardNumberLength, StartIndex = Fix3.NextStartIndex };
         }
 
@@ -35,15 +35,15 @@ namespace FileSplitTool.Models
 
         public void SetValue(string line)
         {
-            RecordNumber.SetValue(line);
-            Fix.SetValue(line);
-            PAN.SetValue(line);
-            Fix1.SetValue(line);
-            Can.SetValue(line);
-            Fix2.SetValue(line);
-            ServiceCode.SetValue(line);
-            Fix3.SetValue(line);
-            CardNumber.SetValue(line);
+            RecordNumber.SubValue(line);
+            Fix.SubValue(line);
+            PAN.SubValue(line);
+            Fix1.SubValue(line);
+            Can.SubValue(line);
+            Fix2.SubValue(line);
+            ServiceCode.SubValue(line);
+            Fix3.SubValue(line);
+            CardNumber.SubValue(line);
         }
     }
 }

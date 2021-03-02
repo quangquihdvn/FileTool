@@ -19,5 +19,10 @@ namespace FileSplitTool.Extensions
         {
             return DateTime.TryParseExact(value, "MM/dd", DateTimeFormatInfo.InvariantInfo, DateTimeStyles.None, out _);
         }
+
+        public static string NamePadRight(this string value, int length)
+        {
+            return value.PadRight(length, ' ');
+        }
     }
 }

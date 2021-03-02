@@ -13,10 +13,20 @@
             }
         }
 
-        public void SetValue(string line)
+        public void SubValue(string line)
         {
             var cardValue = line.Substring(StartIndex, Length);
             Value = cardValue;
+        }
+
+        public void PadValue(string value)
+        {
+            Value = value.PadRight(Length, ' ');
+        }
+
+        public void SetValue(string value)
+        {
+            Value = value;
         }
     }
 }

@@ -83,12 +83,12 @@ namespace FileSplitTool.Validation
 
         private static bool RecordNumberValidate(string value)
         {
-            return value.Length == Constants.RECORD_NUMBER_LENGTH && value.IsValidNumber();
+            return value.Length == Constants.Input01Length.RECORD_NUMBER_LENGTH && value.IsValidNumber();
         }
 
         private static bool CardNumberValidate(string value)
         {
-            bool isLength = value.Length == Constants.CARD_NUMBER_01_LENGTH;
+            bool isLength = value.Length == Constants.Input01Length.CARD_NUMBER_01_LENGTH;
             string[] cardNumberSplit = value.Split(' ');
             var isValid = cardNumberSplit.Length == 4 && cardNumberSplit.All(x => x.IsValidNumber());
             return isLength && isValid;
@@ -96,12 +96,12 @@ namespace FileSplitTool.Validation
 
         private static bool ProductionCodeValidate(string value)
         {
-            return value.Length == Constants.PRODUCTION_CODE_LENGTH;
+            return value.Length == Constants.Input01Length.PRODUCTION_CODE_LENGTH;
         }
 
         private static bool PANValidate(string value)
         {
-            bool isLength = value.Length == Constants.PAN_01_LENGTH;
+            bool isLength = value.Length == Constants.Input01Length.PAN_01_LENGTH;
             var panValue = value.Substring(0, 16);
             var space = value.Substring(16, value.Length - 16).ToCharArray();
             var checkSpace = space.All(x => x == ' ');
@@ -110,57 +110,57 @@ namespace FileSplitTool.Validation
 
         private static bool PanSequenceNumberValidate(string value)
         {
-            return value.Length == Constants.PAN_SEQUENCE_NUMBER_LENGTH && value.IsValidNumber();
+            return value.Length == Constants.Input01Length.PAN_SEQUENCE_NUMBER_LENGTH && value.IsValidNumber();
         }
 
         private static bool EffectiveDateValidate(string value)
         {
-            return value.Length == Constants.EFFECTIVE_DATE_LENGTH && value.IsValidDate();
+            return value.Length == Constants.Input01Length.EFFECTIVE_DATE_LENGTH && value.IsValidDate();
         }
 
         private static bool ExpiryDateValidate(string value)
         {
-            return value.Length == Constants.EXPIRY_DATE_LENGTH && value.IsValidDate();
+            return value.Length == Constants.Input01Length.EXPIRY_DATE_LENGTH && value.IsValidDate();
         }
 
         private static bool CardHoderNameValidate(string value)
         {
-            return value.Length == Constants.CARDHORDER_LENGTH;
+            return value.Length == Constants.Input01Length.CARDHORDER_LENGTH;
         }
 
         private static bool CompanyNameValidate(string value)
         {
-            return value.Length == Constants.COMPANY_NAME_LENGTH;
+            return value.Length == Constants.Input01Length.COMPANY_NAME_LENGTH;
         }
 
         private static bool CardNumberBackSideValidate(string value)
         {
-            return value.Length == Constants.CARD_NUMBER_BACK_SIDE;
+            return value.Length == Constants.Input01Length.CARD_NUMBER_BACK_SIDE;
         }
 
         private static bool CVV2Validate(string value)
         {
-            return value.Length == Constants.CVV2_LENGTH && value.IsValidNumber();
+            return value.Length == Constants.Input01Length.CVV2_LENGTH && value.IsValidNumber();
         }
 
         private static bool MagTrack1Validate(string value)
         {
-            return value.Length == Constants.MAGTRACK1_LENGTH;
+            return value.Length == Constants.Input01Length.MAGTRACK1_LENGTH;
         }
 
         private static bool MagTrack2Validate(string value)
         {
-            return value.Length == Constants.MAGTRACK2_LENGTH;
+            return value.Length == Constants.Input01Length.MAGTRACK2_LENGTH;
         }
 
         private static bool CardIdValidate(string value)
         {
-            return value.Length == Constants.CARDID_LENGTH;
+            return value.Length == Constants.Input01Length.CARDID_LENGTH;
         }
 
         private static bool BarCodeValidate(string value)
         {
-            return value.Length == Constants.BARCODE_LENGTH;
+            return value.Length == Constants.Input01Length.BARCODE_LENGTH;
         }
     }
 }

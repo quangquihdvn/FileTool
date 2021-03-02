@@ -142,6 +142,15 @@ namespace FileSplitTool.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Convert file successfully.
+        /// </summary>
+        internal static string MSG_CONVERT_SUCCESS {
+            get {
+                return ResourceManager.GetString("MSG_CONVERT_SUCCESS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Incorrect CVV2 format.
         /// </summary>
         internal static string MSG_CVV2_INVALID {
