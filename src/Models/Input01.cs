@@ -70,8 +70,8 @@ namespace FileSplitTool.Models
             CompanyName.SubValue(line);
             CardNumberBackSide.SubValue(line);
             CVV2.SubValue(line);
-            MagTrack1.SubValue(line);
-            MagTrack2.SubValue(line);
+            MagTrack1.SubValueAndAddSpecialChar(line,"%");
+            MagTrack2.SubValueAndAddSpecialChar(line, ";");
             ICVV.SubValue(line);
             CardID.SubValue(line);
             Barcode.SubValue(line);

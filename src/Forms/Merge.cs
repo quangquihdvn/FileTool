@@ -134,7 +134,7 @@ namespace FileSplitTool
                         }
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     MessageBoxHelper.Error(Resources.MSG_INVALID_FILE_CONTENT);
                 }

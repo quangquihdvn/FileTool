@@ -145,12 +145,14 @@ namespace FileSplitTool.Validation
 
         private static bool MagTrack1Validate(string value)
         {
-            return value.Length == Constants.Input01Length.MAGTRACK1_LENGTH;
+            //Do thêm ký tự % nên độ dài sẽ validate + 1
+            return value.Length == Constants.Input01Length.MAGTRACK1_LENGTH + 2;
         }
 
         private static bool MagTrack2Validate(string value)
         {
-            return value.Length == Constants.Input01Length.MAGTRACK2_LENGTH;
+            //Do thêm ký tự ;
+            return value.Length == Constants.Input01Length.MAGTRACK2_LENGTH + 2;
         }
 
         private static bool CardIdValidate(string value)

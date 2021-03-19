@@ -19,6 +19,12 @@
             Value = cardValue;
         }
 
+        public void SubValueAndAddSpecialChar(string line, string charStr)
+        {
+            var cardValue = line.Substring(StartIndex, Length);
+            Value = charStr + cardValue + "?";
+        }
+
         public void PadValue(string value)
         {
             Value = value.PadRight(Length, ' ');
